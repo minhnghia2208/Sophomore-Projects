@@ -1,0 +1,75 @@
+class BinaryTree {
+	Tree head;
+    
+    static class Tree {
+    	int value;
+        Tree left;
+        Tree right;
+        
+        Tree(int value) {
+            this.value = value;
+            this.left = null;
+            this.right = null;
+        }
+    }
+    
+    public static BinaryTree insert(BinaryTree tree, int value) {
+    	Tree newtree = new Tree(value);
+    	if (tree.head == null) 
+            tree.head = newtree;
+        
+        else{
+        	Tree current = tree.head;
+        	while (current != null) {
+            	if (current.value > value)
+                	current = current.left;
+              	else 
+                	current = current.right;
+            }
+            current = newtree;
+        }
+        return tree;
+   }
+   
+	public static void PrintTree(BinaryTree tree) {
+    	BinaryTree tmp = tree;
+        
+   		if (tree.head.left == null){
+        	System.out.println(tree.head.value);
+        }
+        
+        else {
+        	tmp.head = tmp.head.left;
+        	PrintTree(tmp);
+        }
+        if (tree.head.right != null) {
+        	tmp.head = tmp.head.right;
+            PrintTree(tmp);
+        }
+  
+    }
+    public static void main(String[] args) {
+    	/* Start with the empty list. */
+        BinaryTree list = new BinaryTree(); 
+  
+        // 
+        // ******INSERTION****** 
+        // 
+  
+        // Insert the values 
+        list = insert(list, 10); 
+        list = insert(list, 2); 
+        PrintTree(list);
+        list = insert(list, 3); 
+        list = insert(list, 4); 
+        list = insert(list, 5); 
+        list = insert(list, 6); 
+        list = insert(list, 7); 
+        list = insert(list, 8); 
+
+        // Print the LinkedList 
+        PrintTree(list); 
+		
+    }
+}
+        
